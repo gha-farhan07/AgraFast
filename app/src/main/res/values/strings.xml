@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AgraFast</string>
+    <string name="home">Beranda</string>
+    <string name="profile">Profil</string>
+    <string name="user_plant">Tanamanku</string>
+    <string name="disease_detector_title">Deteksi Penyakit</string>
+    <string name="plant_stuff_title">Tanam Keberkahan</string>
+    <string name="plants">Tanaman</string>
+    <string name="search_plant">Cari tanaman</string>
+    <string name="my_plant">Tanamanku</string>
+    <string name="plant_tutorial">Cara bertanam</string>
+    <string name="image_auth_banner">Welcome to Agrafast App</string>
+</resources>
