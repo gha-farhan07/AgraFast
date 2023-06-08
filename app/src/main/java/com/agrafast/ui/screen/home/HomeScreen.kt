@@ -65,7 +65,7 @@ fun HomeScreen(
   LazyColumn(
     contentPadding = PaddingValues(top = 8.dp, bottom = 16.dp)
   ) {
-    item { UserInfo() }
+    item { UserInfo(authViewModel = authViewModel) }
     item { SectionTitle(text = stringResource(id = R.string.disease_detector_title)) }
     item { DiseaseDetectionComp(_plants = sharedViewModel.getDummyDiseasePlants()) }
     item {
@@ -86,7 +86,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun UserInfo() {
+fun UserInfo(authViewModel: AuthViewModel?) {
   Row(
     modifier = Modifier
       .height(64.dp)
@@ -111,12 +111,12 @@ fun UserInfo() {
       verticalArrangement = Arrangement.Center
     ) {
       Text(
-        text = "Indi nih Boss",
+        text = authViewModel?.currentUser?.displayName ?: "",
         style = MaterialTheme.typography.titleMedium,
         modifier = Modifier.fillMaxWidth()
       )
       Text(
-        text = "Senggol dongg!!!!!",
+        text = authViewModel?.currentUser?.email ?: "",
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.fillMaxWidth()
       )

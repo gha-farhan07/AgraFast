@@ -6,12 +6,18 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ) : AuthRepository {
+
+    private  val firebaseDb = Firebase.firestore
+    private val usersRef = firebaseDb.collection("users")
+    private val plantsRef = firebaseDb.collection("plants")
 
     override val currentUser: FirebaseUser?
         get() = firebaseAuth.currentUser
@@ -40,6 +46,10 @@ class AuthRepositoryImpl @Inject constructor(
             e.printStackTrace()
             FetchStatus.Error(e)
         }
+    }
+
+    override fun saveSignedUserToDatabase(): FirebaseUser {
+        TODO("Not yet implemented")
     }
 
     override fun logout() {

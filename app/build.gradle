@@ -55,7 +55,9 @@ kapt {
 }
 
 dependencies {
-    def compose_version = "1.4.7"
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
+  implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+  def compose_version = "1.4.7"
   implementation 'androidx.core:core-ktx:1.10.1'
   implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
   implementation 'androidx.activity:activity-compose:1.7.2'

@@ -58,22 +58,22 @@ fun AgraFastApp(
   authViewModel: AuthViewModel,
   context: Context = LocalContext.current
 ) {
-  val googleAuthUiClient by lazy {
-    GoogleAuthClient(
-      context = context,
-      oneTapClient = com.google.android.gms.auth.api.identity.Identity.getSignInClient(context)
-    )
-  }
-
-
-  val googleAuth: GoogleAuthViewModel = hiltViewModel()
-  val state by googleAuth.state.collectAsState()
-  val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult(),
-    onResult = {result ->
-      if (result.resultCode == RESULT_OK) {
-        val signInResult = googleAuthUiClient.signInW()
-      }
-    })
+//  val googleAuthUiClient by lazy {
+//    GoogleAuthClient(
+//      context = context,
+//      oneTapClient = com.google.android.gms.auth.api.identity.Identity.getSignInClient(context)
+//    )
+//  }
+//
+//
+//  val googleAuth: GoogleAuthViewModel = hiltViewModel()
+//  val state by googleAuth.state.collectAsState()
+//  val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult(),
+//    onResult = {result ->
+//      if (result.resultCode == RESULT_OK) {
+//        val signInResult = googleAuthUiClient.signInW()
+//      }
+//    })
 
 
   val navItems = listOf(
@@ -85,6 +85,14 @@ fun AgraFastApp(
     ),
     NavItem(stringResource(R.string.profile), Icons.Default.Person, Screen.Profil),
   )
+
+  var startDestination: String? = null
+
+  if (authViewModel.currentUser?.uid != null) {
+    startDestination = Screen.Home.route
+  } else {
+    startDestination = Screen.Login.route
+  }
 
   val navBackStackEntry by navController.currentBackStackEntryAsState()
   val currentRoute = navBackStackEntry?.destination?.route
@@ -101,7 +109,7 @@ fun AgraFastApp(
     val viewModel: GlobalViewModel = hiltViewModel()
     NavHost(
       navController = navController,
-      startDestination = Screen.Login.route, modifier = Modifier.padding(innerPadding)
+      startDestination = startDestination, modifier = Modifier.padding(innerPadding)
     ) {
 
       composable(Screen.Login.route) {

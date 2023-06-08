@@ -427,19 +427,19 @@ fun TextLoginWith(
 @Composable
 fun GoogleComponent(
     text: String = "Sign in with Google", loadingText: String = "Login to Account...",
-    state: SignInState,
-    onSignInClick: () -> Unit
+//    state: SignInState,
+//    onSignInClick: () -> Unit
     ) {
     val context = LocalContext.current
-    LaunchedEffect(key1 = state.signInError) {
-        state.signInError?.let {error ->
-            Toast.makeText(
-                context,
-                error,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
+//    LaunchedEffect(key1 = state.signInError) {
+//        state.signInError?.let {error ->
+//            Toast.makeText(
+//                context,
+//                error,
+//                Toast.LENGTH_LONG
+//            ).show()
+//        }
+//    }
 
 
     var clicked by remember {
@@ -451,7 +451,7 @@ fun GoogleComponent(
         shape = RoundedCornerShape(8.dp),
         border = BorderStroke(width = 1.dp, color = Color.LightGray),
         color = MaterialTheme.colorScheme.surface,
-        onClick = {  },
+        onClick = { clicked = !clicked},
 
 
         ) {
